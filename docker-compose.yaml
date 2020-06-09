@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  vernemq:
+    image: "vernemq/vernemq"
+    ports:
+      - "1883:1883"
+    environment:
+      - "DOCKER_VERNEMQ_ACCEPT_EULA=yes"
+      - "DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on"
+      - "DOCKER_VERNEMQ_MAX_ONLINE_MESSAGES=-1"
+      - "DOCKER_VERNEMQ_PLUGINS__VMQ_DIVERSITY=off"
+      - "DOCKER_VERNEMQ_VMQ_DIVERSITY__AUTH_POSTGRES__ENABLED=off"
+      - "DOCKER_VERNEMQ_ERLANG__DISTRIBUTION__PORT_RANGE__MINIMUM=9100"
+      - "DOCKER_VERNEMQ_ERLANG__DISTRIBUTION__PORT_RANGE__MAXIMUM=9109"
+volumes:
+  vernemq:
