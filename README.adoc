@@ -21,6 +21,10 @@ To run your application:
 ./gradlew clean run
 ```
 
+== Environment
+
+The broker can be started using the command `docker-compose up vernemq`
+
 == Help
 
 * https://vertx.io/docs/[Vert.x Documentation]
