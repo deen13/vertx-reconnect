@@ -15,7 +15,7 @@ class MainVerticle : CoroutineVerticle() {
   private val client by lazy { MqttClient.create(vertx, MqttClientOptions(mqttClientConfig)) }
 
   override suspend fun start() {
-    val client = connect()
+    connect()
 
     client.subscribeAwait("test", 1)
 
@@ -24,11 +24,9 @@ class MainVerticle : CoroutineVerticle() {
     }
   }
 
-  private suspend fun connect(): MqttClient {
-    return try {
+  private suspend fun connect() {
+    try {
       client.connectAwait(mqttServerConfig.getInteger("port"), mqttServerConfig.getString("hostname"))
-
-      client
     } catch (e: Exception) {
       println("Connection attempt failed. Waiting 5 seconds until the next reconnect.")
       delay(5_000)
